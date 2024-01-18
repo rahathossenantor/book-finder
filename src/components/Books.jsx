@@ -1,5 +1,128 @@
 import Book from "./Book";
 
+const books = [
+    {
+        "id": 5,
+        "name": "1984",
+        "publisher": "Secker & Warburg",
+        "author": "George Orwell",
+        "published_date": "June 8, 1949",
+        "price": 9.99,
+        "ratings": 4,
+        "image": "https://miro.medium.com/v2/resize:fit:7084/1*6QXManBm7wsBgDiagqPH8Q.png"
+    },
+    {
+        "id": 10,
+        "name": "Alchemist, The",
+        "publisher": "HarperCollins",
+        "author": "Paulo Coelho",
+        "published_date": "1988",
+        "price": 12.99,
+        "ratings": 5,
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Catcher",
+        "publisher": "Little, Brown and Company",
+        "author": "J.D. Salinger",
+        "published_date": "July 16, 1951",
+        "price": 11.99,
+        "ratings": 3,
+        "image": "https://media.thuprai.com/products/91LvoDqkF1L.jpg"
+    },
+    {
+        "id": 1,
+        "name": "Code Complete",
+        "publisher": "Microsoft Press",
+        "author": "Steve McConnell",
+        "published_date": "June 19, 2004",
+        "price": 39.99,
+        "ratings": 4,
+        "image": "https://m.media-amazon.com/images/I/61GzazUmKyL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Clean Code",
+        "publisher": "Prentice Hall",
+        "author": "Robert C. Martin",
+        "published_date": "August 11, 2008",
+        "price": 34.99,
+        "ratings": 5,
+        "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51E2055ZGUL._SL1000_.jpg"
+    },
+    {
+        "id": 11,
+        "name": "Design Patterns",
+        "publisher": "Addison-Wesley",
+        "author": "Erich Gamma",
+        "published_date": "November 10, 1994",
+        "price": 49.99,
+        "ratings": 5,
+        "image": "https://balka-book.com/files/2023/08_14/14_20/u_files_store_5_6.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Eloquent JS",
+        "publisher": "No Starch Press",
+        "author": "Marijn Haverbeke",
+        "published_date": "December 4, 2018",
+        "price": 29.99,
+        "ratings": 4,
+        "image": "https://eloquentjavascript.net/img/cover.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Head First JS",
+        "publisher": "O'Reilly Media",
+        "author": "Elisabeth Robson",
+        "published_date": "October 25, 2004",
+        "price": 38.99,
+        "ratings": 3,
+        "image": "https://m.media-amazon.com/images/I/81h4jxKvcmS._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        "id": 3,
+        "name": "JS: The Good Parts",
+        "publisher": "O'Reilly Media",
+        "author": "Douglas Crockford",
+        "published_date": "May 30, 2008",
+        "price": 24.99,
+        "ratings": 4,
+        "image": "https://m.media-amazon.com/images/I/511j6cza5bL.jpg"
+    },
+    {
+        "id": 12,
+        "name": "MM-Month: Essays",
+        "publisher": "Addison-Wesley",
+        "author": "Frederick P. Brooks Jr.",
+        "published_date": "August 12, 1975",
+        "price": 32.99,
+        "ratings": 4,
+        "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348430512i/13629.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Python Crash",
+        "publisher": "No Starch Press",
+        "author": "Eric Matthes",
+        "published_date": "November 30, 2015",
+        "price": 25.99,
+        "ratings": 5,
+        "image": "https://m.media-amazon.com/images/I/81py-nCTfrL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        "id": 2,
+        "name": "TPP: Your Journey",
+        "publisher": "Addison-Wesley",
+        "author": "Dave Thomas, Andy Hunt",
+        "published_date": "October 20, 1999",
+        "price": 42.99,
+        "ratings": 4,
+        "image": "https://m.media-amazon.com/images/I/71DgBLETNqL._AC_UF1000,1000_QL80_.jpg"
+    }
+];
+
 const Books = () => {
     return (
         <main className="my-10 lg:my-14 md:mx-5">
@@ -68,14 +191,9 @@ const Books = () => {
                 </div>
             </header>
             <div className="container mx-auto grid grid-cols-1 gap-8 max-w-7xl md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <Book />
-                <Book />
-                <Book />
-                <Book />
-                <Book />
-                <Book />
-                <Book />
-                <Book />
+                {
+                    books.map(book => <Book key={book.id} book={book} />)
+                }
             </div>
         </main>
     );

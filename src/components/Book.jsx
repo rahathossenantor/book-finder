@@ -1,5 +1,4 @@
 import { useState } from "react";
-import book from "../assets/book.png";
 import star from "../assets/star.svg";
 
 const favBtnSvg =
@@ -22,7 +21,6 @@ const favBtnSvg =
             strokeLinejoin="round"
         />
     </svg>
-
 const unFavBtnSvg =
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +37,8 @@ const unFavBtnSvg =
         />
     </svg>
 
-const Book = () => {
+const Book = ({ book }) => {
+    console.log(book);
     const [isFavorite, setIsFavorite] = useState(false);
     const [favBtnStyles, setFavBtnStyles] = useState("flex min-w-[132px] items-center justify-center gap-1 rounded-md py-1.5 lg:py-1.5 transition-all bg-[#1C4336]/[14%] text-[#1C4336] hover:bg-[#1C4336]/[24%]");
 
@@ -57,26 +56,25 @@ const Book = () => {
             {/* thumbnail */}
             <div className="flex items-center justify-center rounded-md border border-[#324251]/30 bg-white p-4">
                 <img
-                    className="max-w-[144px]"
-                    src={book}
+                    className="max-w-[145px] h-[230px] object-cover"
+                    src={book.image}
                     alt="book name"
                 />
             </div>
             {/* info */}
             <div className="space-y-3">
-                <h4 className="text-lg font-bold lg:text-xl">JavaScript and Jquery</h4>
+                <h4 className="text-lg font-bold lg:text-xl">{book.name}</h4>
                 <p className="text-xs lg:text-sm">
-                    By : <span>Jon Duckett</span>
+                    By : <span>{book.publisher}</span>
                 </p>
                 <div className="flex items-center justify-between">
-                    <h4 className="text-lg font-bold lg:text-xl">$62</h4>
+                    <h4 className="text-lg font-bold lg:text-xl">${book.price}</h4>
                     {/* stars */}
                     <div className="flex items-center space-x-1">
-                        <img src={star} />
-                        <img src={star} />
-                        <img src={star} />
-                        <img src={star} />
-                        <span className="text-xs lg:text-sm">(4 Star)</span>
+                        {
+                            Array(book.ratings).fill("1").map((rating, idx) => <img key={idx} src={star} />)
+                        }
+                        <span className="text-xs lg:text-sm">({book.ratings} Star)</span>
                     </div>
                     {/* stars ends */}
                 </div>
