@@ -38,7 +38,6 @@ const unFavBtnSvg =
     </svg>
 
 const Book = ({ book }) => {
-    console.log(book);
     const [isFavorite, setIsFavorite] = useState(false);
     const [favBtnStyles, setFavBtnStyles] = useState("flex min-w-[132px] items-center justify-center gap-1 rounded-md py-1.5 lg:py-1.5 transition-all bg-[#1C4336]/[14%] text-[#1C4336] hover:bg-[#1C4336]/[24%]");
 

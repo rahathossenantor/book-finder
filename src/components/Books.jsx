@@ -1,6 +1,7 @@
+import { useState } from "react";
 import Book from "./Book";
 
-const books = [
+const booksData = [
     {
         "id": 5,
         "name": "1984",
@@ -113,7 +114,7 @@ const books = [
     },
     {
         "id": 2,
-        "name": "TPP: Your Journey",
+        "name": "Your Journey",
         "publisher": "Addison-Wesley",
         "author": "Dave Thomas, Andy Hunt",
         "published_date": "October 20, 1999",
@@ -123,7 +124,25 @@ const books = [
     }
 ];
 
+const noBooksFound =
+    <div className="text-center my-20">
+        <img className="inline-block w-20" src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png" alt="no-data-found" />
+        <div className="text-4xl">No books found!</div>
+    </div>
+
 const Books = () => {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [books, setBooks] = useState([...booksData]);
+
+    const handleBookSearch = (query) => {
+        if (query !== "") {
+            const sortedBooks = booksData.filter(book => book.name.toLowerCase().startsWith(query.toLowerCase()));
+            setBooks(sortedBooks);
+        } else {
+            setBooks([]);
+        }
+    };
+
     return (
         <main className="my-10 lg:my-14 md:mx-5">
             <header className="mb-8 lg:mb-10 mx-auto max-w-7xl">
@@ -135,10 +154,14 @@ const Books = () => {
                             Trending Books of the Year
                         </h2>
                         {/* Search Box */}
-                        <form>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            handleBookSearch(searchQuery);
+                        }}>
                             <div className="flex">
                                 <div className="relative w-full overflow-hidden rounded-lg border-2 border-[#1C4336] text-[#1C4336] md:min-w-[380px] lg:min-w-[440px]">
                                     <input
+                                        onChange={(e) => setSearchQuery(e.target.value)}
                                         type="search"
                                         id="search-dropdown"
                                         className="z-20 block w-full bg-white px-4 py-2.5 pr-10 text-[#1C4336] placeholder:text-[#1C4336] focus:outline-none"
@@ -192,9 +215,10 @@ const Books = () => {
             </header>
             <div className="container mx-auto grid grid-cols-1 gap-8 max-w-7xl md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {
-                    books.map(book => <Book key={book.id} book={book} />)
+                    books.length ? books.map(book => <Book key={book.id} book={book} />) : ""
                 }
             </div>
+            {books.length ? "" : noBooksFound}
         </main>
     );
 };
