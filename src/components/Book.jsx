@@ -57,12 +57,12 @@ const Book = ({ book }) => {
                 <img
                     className="max-w-[145px] h-[230px] object-cover"
                     src={book.image}
-                    alt="book name"
+                    alt={book.name}
                 />
             </div>
             {/* info */}
             <div className="space-y-3">
-                <h4 className="text-lg font-bold lg:text-xl">{book.name}</h4>
+                <h4 className="text-lg font-bold lg:text-xl">{book.name} ({book.published_year})</h4>
                 <p className="text-xs lg:text-sm">
                     By : <span>{book.publisher}</span>
                 </p>

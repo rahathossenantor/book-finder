@@ -3,71 +3,71 @@ import Book from "./Book";
 
 const booksData = [
     {
-        "id": 5,
-        "name": "1984",
-        "publisher": "Secker & Warburg",
+        "id": 1,
+        "name": "JavaScript and jQuery",
+        "publisher": "Jon Duckett",
         "author": "George Orwell",
-        "published_date": "June 8, 1949",
-        "price": 9.99,
+        "published_year": 2019,
+        "price": 62,
         "ratings": 4,
-        "image": "https://miro.medium.com/v2/resize:fit:7084/1*6QXManBm7wsBgDiagqPH8Q.png"
+        "image": "https://i.ibb.co/Zc0v287/book.png"
     },
     {
-        "id": 10,
-        "name": "Alchemist, The",
+        "id": 2,
+        "name": "Alchemist",
         "publisher": "HarperCollins",
         "author": "Paulo Coelho",
-        "published_date": "1988",
+        "published_year": 1988,
         "price": 12.99,
         "ratings": 5,
         "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654371463i/18144590.jpg"
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "Catcher",
         "publisher": "Little, Brown and Company",
         "author": "J.D. Salinger",
-        "published_date": "July 16, 1951",
+        "published_year": 1951,
         "price": 11.99,
         "ratings": 3,
         "image": "https://media.thuprai.com/products/91LvoDqkF1L.jpg"
     },
     {
-        "id": 1,
+        "id": 4,
         "name": "Code Complete",
         "publisher": "Microsoft Press",
         "author": "Steve McConnell",
-        "published_date": "June 19, 2004",
+        "published_year": 2004,
         "price": 39.99,
         "ratings": 4,
         "image": "https://m.media-amazon.com/images/I/61GzazUmKyL._AC_UF1000,1000_QL80_.jpg"
     },
     {
-        "id": 7,
+        "id": 5,
         "name": "Clean Code",
         "publisher": "Prentice Hall",
         "author": "Robert C. Martin",
-        "published_date": "August 11, 2008",
+        "published_year": 2008,
         "price": 34.99,
         "ratings": 5,
         "image": "https://m.media-amazon.com/images/W/MEDIAX_792452-T1/images/I/51E2055ZGUL._SL1000_.jpg"
     },
     {
-        "id": 11,
+        "id": 6,
         "name": "Design Patterns",
         "publisher": "Addison-Wesley",
         "author": "Erich Gamma",
-        "published_date": "November 10, 1994",
+        "published_year": 1994,
         "price": 49.99,
         "ratings": 5,
         "image": "https://balka-book.com/files/2023/08_14/14_20/u_files_store_5_6.jpg"
     },
     {
-        "id": 6,
+        "id": 7,
         "name": "Eloquent JS",
         "publisher": "No Starch Press",
         "author": "Marijn Haverbeke",
-        "published_date": "December 4, 2018",
+        "published_year": 2018,
         "price": 29.99,
         "ratings": 4,
         "image": "https://eloquentjavascript.net/img/cover.jpg"
@@ -77,53 +77,54 @@ const booksData = [
         "name": "Head First JS",
         "publisher": "O'Reilly Media",
         "author": "Elisabeth Robson",
-        "published_date": "October 25, 2004",
+        "published_year": 2004,
         "price": 38.99,
         "ratings": 3,
         "image": "https://m.media-amazon.com/images/I/81h4jxKvcmS._AC_UF1000,1000_QL80_.jpg"
     },
     {
-        "id": 3,
-        "name": "JS: The Good Parts",
+        "id": 9,
+        "name": "JavaScript Good Parts",
         "publisher": "O'Reilly Media",
         "author": "Douglas Crockford",
-        "published_date": "May 30, 2008",
+        "published_year": 2008,
         "price": 24.99,
         "ratings": 4,
         "image": "https://m.media-amazon.com/images/I/511j6cza5bL.jpg"
     },
     {
-        "id": 12,
-        "name": "MM-Month: Essays",
+        "id": 10,
+        "name": "Mithical Month",
         "publisher": "Addison-Wesley",
         "author": "Frederick P. Brooks Jr.",
-        "published_date": "August 12, 1975",
+        "published_year": 1975,
         "price": 32.99,
         "ratings": 4,
         "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348430512i/13629.jpg"
     },
     {
-        "id": 9,
-        "name": "Python Crash",
+        "id": 11,
+        "name": "Python Crash Course",
         "publisher": "No Starch Press",
         "author": "Eric Matthes",
-        "published_date": "November 30, 2015",
+        "published_year": 2015,
         "price": 25.99,
         "ratings": 5,
         "image": "https://m.media-amazon.com/images/I/81py-nCTfrL._AC_UF1000,1000_QL80_.jpg"
     },
     {
-        "id": 2,
-        "name": "Your Journey",
+        "id": 12,
+        "name": "Trust Your Journey",
         "publisher": "Addison-Wesley",
         "author": "Dave Thomas, Andy Hunt",
-        "published_date": "October 20, 1999",
+        "published_year": 1999,
         "price": 42.99,
         "ratings": 4,
         "image": "https://m.media-amazon.com/images/I/71DgBLETNqL._AC_UF1000,1000_QL80_.jpg"
     }
 ];
 
+// status for empty or invalid search value
 const noBooksFound =
     <div className="text-center my-20">
         <img className="inline-block w-20" src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png" alt="no-data-found" />
@@ -133,13 +134,56 @@ const noBooksFound =
 const Books = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [books, setBooks] = useState([...booksData]);
+    const sortedBooks = [...booksData];
 
+    // search books by name
     const handleBookSearch = (query) => {
         if (query !== "") {
             const sortedBooks = booksData.filter(book => book.name.toLowerCase().startsWith(query.toLowerCase()));
             setBooks(sortedBooks);
         } else {
             setBooks([]);
+        }
+    };
+
+    // sorting books by name, published year in ascending & descending order
+    const handleCategoryChange = (e) => {
+        if (books.length === 0) {
+            return
+        }
+        const ctg = e.target.value;
+        if (ctg === "name_asc") {
+            sortedBooks.sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setBooks(sortedBooks);
+        } else if (ctg === "name_desc") {
+            sortedBooks.sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                if (nameA > nameB) {
+                    return -1;
+                }
+                if (nameA < nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setBooks(sortedBooks);
+        } else if (ctg === "year_asc") {
+            sortedBooks.sort((a, b) => a.published_year - b.published_year);
+            setBooks(sortedBooks);
+        } else if (ctg === "year_desc") {
+            sortedBooks.sort((a, b) => b.published_year - a.published_year);
+            setBooks(sortedBooks);
         }
     };
 
@@ -203,6 +247,7 @@ const Books = () => {
                             className="cursor-pointer rounded-md border px-4 py-2 text-center text-gray-600"
                             name="sortBy"
                             id="sortBy"
+                            onChange={handleCategoryChange}
                         >
                             <option hidden value="">Sort</option>
                             <option value="name_asc">Name (A-Z)</option>
